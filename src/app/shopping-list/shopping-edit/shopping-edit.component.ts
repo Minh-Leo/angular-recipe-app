@@ -11,6 +11,7 @@ import { ShoppingListService } from "../shopping-list.service";
   styleUrls: ["./shopping-edit.component.css"],
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
+  // access to the form with local ref #f, call it slForm
   @ViewChild("f") slForm: NgForm;
   subscription: Subscription;
   editMode = false;
@@ -37,7 +38,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onAddItem(form: NgForm) {
+  onSubmit(form: NgForm) {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount);
 
@@ -46,5 +47,17 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     } else {
       this.slService.addIngredient(newIngredient);
     }
+    this.editMode = false;
+    form.reset();
+  }
+
+  onDelete() {
+    this.slService.deleteIngredient(this.editedItemIndex);
+    this.onClear();
+  }
+
+  onClear() {
+    this.slForm.reset();
+    this.editMode = false;
   }
 }
