@@ -41,7 +41,7 @@ export class RecipeEditComponent implements OnInit {
       recipeDescription = recipe.description;
       if (recipe.ingredients) {
         for (let ingredient of recipe.ingredients) {
-          (<FormArray>recipeIngredients).push(
+          recipeIngredients.push(
             new FormGroup({
               name: new FormControl(ingredient.name),
               amount: new FormControl(ingredient.amount),
@@ -63,7 +63,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onAddIngredient() {
-    <FormArray>this.recipeForm.get("ingredients").push(
+    (<FormArray>this.recipeForm.get("ingredients")).push(
       new FormGroup({
         name: new FormControl(),
         amount: new FormControl(),
