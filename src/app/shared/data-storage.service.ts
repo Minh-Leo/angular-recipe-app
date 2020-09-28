@@ -38,5 +38,3 @@ export class DataStorageService {
       );
   }
 }
-
-// https://angular-recipes-b66ea.firebaseio.com/
