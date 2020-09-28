@@ -9,22 +9,28 @@ import { Recipe } from "./recipe.model";
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      "Test Recipe",
-      "Description test",
-      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/szechuan-beef-horizontal-1530892577.jpg?resize=768:*",
-      [new Ingredient("Meat", 1), new Ingredient("Rice", 20)]
-    ),
-    new Recipe(
-      "Test Recipe 2",
-      "Description 2 test",
-      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/szechuan-beef-horizontal-1530892577.jpg?resize=768:*",
-      [new Ingredient("Chicken", 31), new Ingredient("Bun", 8)]
-    ),
-  ];
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     "Test Recipe",
+  //     "Description test",
+  //     "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/szechuan-beef-horizontal-1530892577.jpg?resize=768:*",
+  //     [new Ingredient("Meat", 1), new Ingredient("Rice", 20)]
+  //   ),
+  //   new Recipe(
+  //     "Test Recipe 2",
+  //     "Description 2 test",
+  //     "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/szechuan-beef-horizontal-1530892577.jpg?resize=768:*",
+  //     [new Ingredient("Chicken", 31), new Ingredient("Bun", 8)]
+  //   ),
+  // ];
+  private recipes: Recipe[] = [];
 
   constructor(private slService: ShoppingListService) {}
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 
   getRecipes() {
     // return a copy of the array, without slice it return a reference
