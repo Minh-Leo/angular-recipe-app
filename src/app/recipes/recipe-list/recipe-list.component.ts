@@ -29,13 +29,13 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         this.recipes = recipes;
       }
     );
-    this.dataSubscription = this.dataService.fetchRecipes().subscribe();
+    // this.dataSubscription = this.dataService.fetchRecipes();
     // this.recipes = this.recipeService.getRecipes();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.dataSubscription.unsubscribe();
+    // this.dataSubscription.unsubscribe();
   }
 
   onNewRecipe() {
