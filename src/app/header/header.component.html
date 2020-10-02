@@ -22,7 +22,7 @@
       </ul>
       <!-- dropdown part -->
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="isAuthenticated"><a> Logout </a></li>
+        <li *ngIf="isAuthenticated"><a (click)="onLogout()"> Logout </a></li>
         <li class="dropdown" appDropdown *ngIf="isAuthenticated">
           <a class="dropdown-toggle" role="button"
             >Manage <span class="caret"></span
