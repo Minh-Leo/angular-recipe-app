@@ -20,7 +20,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private dataService: DataStorageService
+    private dataStorageService: DataStorageService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +29,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
         this.recipes = recipes;
       }
     );
+    this.dataStorageService.fetchRecipes().subscribe();
+
     // this.dataSubscription = this.dataService.fetchRecipes();
     // this.recipes = this.recipeService.getRecipes();
   }
